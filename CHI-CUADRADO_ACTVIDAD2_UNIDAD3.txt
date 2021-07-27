@@ -1,0 +1,50 @@
+> dat<- read.csv("cigarro-cancer.csv")
+> View (dat)
+> nrow(dat)
+[1] 500
+> tab<- table(dat)
+> tab <- tab[c(2,1),c(2,1)]
+> tab
+       cancer
+cigarro   1   0
+      1  27  84
+      0  59 330
+> chisq.test(tab)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tab
+X-squared = 4.4621, df = 1, p-value = 0.03465
+
+> tab <- table(dat)
+> tab
+       cancer
+cigarro   0   1
+      0 330  59
+      1  84  27
+> chisq.test(tab)
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  tab
+X-squared = 4.4621, df = 1, p-value = 0.03465
+
+> chisq.test(tab)$expected
+       cancer
+cigarro       0      1
+      0 322.092 66.908
+      1  91.908 19.092
+> fisher.test(tab)
+
+	Fisher's Exact Test for Count Data
+
+data:  tab
+p-value = 0.03183
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 1.028886 3.080742
+sample estimates:
+odds ratio 
+  1.795568 
+
+> 
